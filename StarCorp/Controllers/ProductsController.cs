@@ -42,7 +42,7 @@ namespace StarCorp.Controllers
                 {
                     if (product.Stock != 0 && product.Stock >= amount)
                     {
-                        //order.Lines = new List<OrderLine>();
+                        order.Lines = new List<OrderLine>();
                         order.Id = orderId;
                         order.Buyer = buyer;
                         order.DeliveryAddress = deliveryAddress;
