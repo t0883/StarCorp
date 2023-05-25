@@ -27,7 +27,6 @@ namespace StarCorp.Data
         /// <returns></returns>
         Task<IQueryable<IProduct>> GetProductsAsync();
 
-
         /// <summary>
         /// Partial update of a single product record. Will update the specified product with any provided properties that are not null.
         /// </summary>
