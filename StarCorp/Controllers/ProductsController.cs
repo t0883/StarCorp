@@ -85,7 +85,7 @@ namespace StarCorp.Controllers
                 return NotFound();
             }
 
-            if (productId != null)
+            if (productId != Guid.Empty)
             {
                 foreach (var product in products)
                 {
@@ -117,13 +117,113 @@ namespace StarCorp.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(Guid productId, Product product)
+        public async Task<IActionResult> Update(Guid productId, string name, string description, string brand, string category, decimal? price, uint? stock)
         {
+            var updateProduct = new Product();
+            var products = await _productDataService.GetProductsAsync();
+
+            foreach (var product in products)
+            {
+                if (product.Id.Equals(productId))
+                {
+                    updateProduct.Id = productId;
+
+                    if (name != null)
+                    {
+                        updateProduct.Name = name;
+                    }
+                    else
+                    {
+                        updateProduct.Name = product.Name;
+                    }
+                    if (description != null)
+                    {
+                        updateProduct.Description = description;
+                    }
+                    else 
+                    { 
+                        updateProduct.Description = product.Description;
+                    }
+                    if (!String.IsNullOrEmpty(brand))
+                    {
+                        updateProduct.Brand = brand;
+                    }
+                    else 
+                    { 
+                        updateProduct.Brand = product.Brand; 
+                    }
+                    if (!String.IsNullOrEmpty(category))
+                    {
+                        updateProduct.Category = category;
+                    }
+                    else
+                    {
+                        updateProduct.Category = product.Category;
+                    }
+                    if (price != null)
+                    {
+                        updateProduct.Price = (decimal)price;
+                    }
+                    else
+                    {
+                        updateProduct.Price = product.Price;
+                    }
+                    if (stock != null)
+                    {
+                        updateProduct.Stock = (uint)stock;
+                    }
+                    else
+                    {
+                        updateProduct.Stock = product.Stock;
+                    }
+                }
+            }
+            /*
+            if(productId != null)
+            {
+                updateProduct.Id = productId;
+
+                if(name != null)
+                {
+                    updateProduct.Name = name;
+                }
+                if(description != null)
+                {
+                    updateProduct.Description = description;
+                }
+                if (!String.IsNullOrEmpty(brand))
+                {
+                    updateProduct.Brand = brand;
+                }
+                if (!String.IsNullOrEmpty(category))
+                {
+                    updateProduct.Category = category;
+                }
+                if(price != null)
+                {
+                    updateProduct.Price = price;
+                }
+                if(stock != null)
+                {
+                    updateProduct.Stock = stock;
+                }
+            }
+            */
+            /*
+            updateProduct.Id = productId;
+            updateProduct.Name = name;
+            updateProduct.Description = description;
+            updateProduct.Brand = brand;
+            updateProduct.Category = category;
+            updateProduct.Stock = stock;
+            */
+            /*
             if (product == null)
             {
                 return BadRequest();
             }
-            await _productDataService.UpdateProductAsync(product);
+            */
+            await _productDataService.UpdateProductAsync(updateProduct);
             return NoContent();
         }
 
