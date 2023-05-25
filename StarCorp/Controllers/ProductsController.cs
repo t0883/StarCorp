@@ -60,9 +60,8 @@ namespace StarCorp.Controllers
                 }
             }
 
-            await _orderDataService.SaveOrder(order);
 
-            return Ok(order);
+            return Ok(await _orderDataService.SaveOrder(order));
             
         }
 
