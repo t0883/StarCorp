@@ -178,51 +178,7 @@ namespace StarCorp.Controllers
                     }
                 }
             }
-            /*
-            if(productId != null)
-            {
-                updateProduct.Id = productId;
-
-                if(name != null)
-                {
-                    updateProduct.Name = name;
-                }
-                if(description != null)
-                {
-                    updateProduct.Description = description;
-                }
-                if (!String.IsNullOrEmpty(brand))
-                {
-                    updateProduct.Brand = brand;
-                }
-                if (!String.IsNullOrEmpty(category))
-                {
-                    updateProduct.Category = category;
-                }
-                if(price != null)
-                {
-                    updateProduct.Price = price;
-                }
-                if(stock != null)
-                {
-                    updateProduct.Stock = stock;
-                }
-            }
-            */
-            /*
-            updateProduct.Id = productId;
-            updateProduct.Name = name;
-            updateProduct.Description = description;
-            updateProduct.Brand = brand;
-            updateProduct.Category = category;
-            updateProduct.Stock = stock;
-            */
-            /*
-            if (product == null)
-            {
-                return BadRequest();
-            }
-            */
+            
             await _productDataService.UpdateProductAsync(updateProduct);
             return NoContent();
         }
