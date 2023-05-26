@@ -50,8 +50,6 @@ namespace StarCorp.Controllers
                         orderLine.OrderId = order.Id;
                         orderLine.ProductId = productId;
                         orderLine.Quantity = amount;
-                        //order.Lines
-                        //product.Stock = await _productDataService.UpdateProductAsync(-amount);
                     }
                     else
                     {
