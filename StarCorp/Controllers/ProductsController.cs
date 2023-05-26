@@ -50,6 +50,13 @@ namespace StarCorp.Controllers
                         orderLine.OrderId = order.Id;
                         orderLine.ProductId = productId;
                         orderLine.Quantity = amount;
+
+                        var newStock = new Product();
+                        newStock.Id = product.Id;
+                        newStock.Price = product.Price;
+                        newStock.Stock = product.Stock - amount;
+
+                        await _productDataService.UpdateProductAsync(newStock);
                     }
                     else
                     {
